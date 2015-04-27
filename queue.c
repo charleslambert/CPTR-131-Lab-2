@@ -10,7 +10,7 @@ void enqueue(QUEUE *queue, int value) {
 	
 	node->pid = value;
 
-	if(queue->last == EMPTY) {
+	if(queue->last == EMPTY && queue->first == EMPTY) {
 		queue->first = node;
 		queue->last = node;
 	}
@@ -24,5 +24,26 @@ void enqueue(QUEUE *queue, int value) {
 }
 
 int dequeue(QUEUE *queue) {
+	int pid;
 
+
+	if(queue->last == EMPTY && queue->first == EMPTY) {
+		printf("The queue is empty\n");
+		return -1;
+	}
+	else if(queue->last == queue->first)
+	{
+		pid = queue->last->pid;
+		free(queue->first);
+		queue->first = EMPTY;
+		queue->last = EMPTY;
+	}
+	else {
+		pid = queue->last->pid;
+		queue->last = queue->last->next;
+		free(queue->last->prev);
+		queue->last->prev = EMPTY;
+	}
+
+	return pid;
 }

@@ -8,7 +8,7 @@ void test_dequeue();
 
 int main() {
 	test_enqueue();
-	test_dequeue
+	test_dequeue();
 
 	return 0;
 }
@@ -50,10 +50,15 @@ void test_dequeue() {
 
 	printf("Test 2\n");
 	enqueue(test_q, a);
-	assert(dequeue(test_q)==10);
+	assert(dequeue(test_q) == 10);
+	assert(test_q->last == EMPTY);
+	assert(test_q->first == EMPTY);
 
 	printf("Test 3\n");
 	enqueue(test_q, a);
 	enqueue(test_q, b);
-	assert(dequeue(test_q)==20);
+	assert(dequeue(test_q) == 10);
+	assert(test_q->first->pid == 20);
+
+	printf("Test Passed\n\n");
 }
