@@ -1,13 +1,13 @@
-all: queue.o
-	$(CC) -o queue queue.o
+all: main.o scheduler.o queue.o
+	$(CC) -o main main.o scheduler.o queue.o
 
 run:
-	./queue
+	./main
 
 clean:
-	rm -f queue *.o
+	rm -f main *.o
 
 test: test_queue.o queue.o
-	$(CC) -o test test_queue.o queue.o
+	$(CC) -o test test_queue.o queue.o test_scheduler.o scheduler.o
 	./test
 	rm -f test
