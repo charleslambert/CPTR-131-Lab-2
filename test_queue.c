@@ -23,18 +23,18 @@ void test_enqueue() {
 	
 	printf("Test 1\n");
 	enqueue(test_q, a);
-	assert(test_q->first->pid=10);
-	assert(test_q->last->pid=10);
+	assert(test_q->first->pid == 10);
+	assert(test_q->last->pid == 10);
 
 	printf("Test 2\n");
-	enqueue(test_q, a);
-	assert(test_q->first->pid=20);
-	assert(test_q->last->pid=10);
+	enqueue(test_q, b);
+	assert(test_q->first->pid == 20);
+	assert(test_q->last->pid == 10);
 
 	printf("Test 3\n");
-	enqueue(test_q, a);
-	assert(test_q->first->pid=25);
-	assert(test_q->last->pid=10);
+	enqueue(test_q, c);
+	assert(test_q->first->pid == 25);
+	assert(test_q->last->pid == 10);
 
 	printf("Tests Passed\n\n");
 }

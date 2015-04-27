@@ -45,5 +45,6 @@ int dequeue(QUEUE *queue) {
 		queue->last->prev = EMPTY;
 	}
 
+	queue->count--;
 	return pid;
 }
