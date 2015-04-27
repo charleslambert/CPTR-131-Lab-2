@@ -4,7 +4,8 @@ QUEUE *create() {
 	return calloc(1,sizeof(QUEUE));
 }
 
-//values are pushed into the head of the list.
+//values are pushed into the first of the queue.
+//next is heading toward the first of the queue.
 void enqueue(QUEUE *queue, int value) {
 	Q_NODE *node = calloc(1, sizeof(Q_NODE));
 	
@@ -23,6 +24,8 @@ void enqueue(QUEUE *queue, int value) {
 	queue->count++;
 }
 
+//values are poped off the tail of the queue.
+//prev is heading toward the last of the queue.
 int dequeue(QUEUE *queue) {
 	int pid;
 

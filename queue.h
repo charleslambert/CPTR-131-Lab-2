@@ -22,7 +22,7 @@ typedef struct queue {
 //create a queue
 QUEUE *create();
 
-//delete a queue
+//delete a PID in the queue
 void delete();
 
 //Put a PID in the queue
@@ -32,7 +32,7 @@ void enqueue(QUEUE *queue, int value);
 //Take a value out of the queue
 //delete reference in the queue
 //pop
-int dequeue();
+int dequeue(QUEUE *queue);
 
 //See a value in the queue
 void peek();

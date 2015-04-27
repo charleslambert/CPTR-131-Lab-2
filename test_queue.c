@@ -25,16 +25,19 @@ void test_enqueue() {
 	enqueue(test_q, a);
 	assert(test_q->first->pid == 10);
 	assert(test_q->last->pid == 10);
+	assert(test_q->count == 1);
 
 	printf("Test 2\n");
 	enqueue(test_q, b);
 	assert(test_q->first->pid == 20);
 	assert(test_q->last->pid == 10);
+	assert(test_q->count == 2);
 
 	printf("Test 3\n");
 	enqueue(test_q, c);
 	assert(test_q->first->pid == 25);
 	assert(test_q->last->pid == 10);
+	assert(test_q->count == 3);
 
 	printf("Tests Passed\n\n");
 }
@@ -45,20 +48,25 @@ void test_dequeue() {
 	int a = 10;
 	int b = 20;
 
+	printf("Test dequeue\n\n");
+
 	printf("Test 1\n");
-	assert(dequeue(test_q)==-1);
+	assert(dequeue(test_q) == -1);
+	assert(test_q->count == 0);
 
 	printf("Test 2\n");
 	enqueue(test_q, a);
 	assert(dequeue(test_q) == 10);
 	assert(test_q->last == EMPTY);
 	assert(test_q->first == EMPTY);
+	assert(test_q->count == 0);
 
 	printf("Test 3\n");
 	enqueue(test_q, a);
 	enqueue(test_q, b);
 	assert(dequeue(test_q) == 10);
 	assert(test_q->first->pid == 20);
+	assert(test_q->count == 1);
 
 	printf("Test Passed\n\n");
 }
