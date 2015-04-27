@@ -56,3 +56,15 @@ int dequeue(QUEUE *queue) {
 	return pid;
 }
 
+void destroy(QUEUE *queue) {
+	if (queue->first == EMPTY && queue->last == EMPTY) {
+		free(queue);
+	}
+	else {
+		while (queue->count >= 0) {
+			dequeue(queue);
+
+			queue->count--;
+		}
+	}
+}

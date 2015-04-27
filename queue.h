@@ -34,5 +34,8 @@ void enqueue(QUEUE *queue, int value);
 //pop
 int dequeue(QUEUE *queue);
 
-//See a value in the queue
+//See a value in the queue, at tail
 void peek();
+
+//Destroy queue
+void destroy(QUEUE *queue);

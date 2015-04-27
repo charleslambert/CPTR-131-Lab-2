@@ -70,3 +70,17 @@ void test_dequeue() {
 
 	printf("Test Passed\n\n");
 }
+
+void test_destroy() {
+	QUEUE *test_q = create();
+	enqueue(test_q, 10);
+	enqueue(test_q, 20);
+	enqueue(test_q, 30);
+
+	printf("Test destroy\n\n");
+
+	printf("Test 1\n");
+	destroy(test_q);
+	printf("%d", test_q);
+
+}
