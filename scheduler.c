@@ -4,6 +4,6 @@ int stop() {
 
 }
 
-void ready(int pid, QUEUE *ready_queue) {
-	enqueue(ready_queue,pid);
+void ready(int pid, LIST *ready_queue) {
+	push(ready_queue,pid);
 }

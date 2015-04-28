@@ -7,35 +7,35 @@
 #define EMPTY NULL
 
 
-typedef struct q_node {
-	struct q_node *next;
-	struct q_node *prev;
+typedef struct node {
+	struct node *next;
+	struct node *prev;
 	int pid;
-}Q_NODE;
+}NODE;
 
-typedef struct queue {
+typedef struct double_l_list {
 	int count;
-	Q_NODE *first;
-	Q_NODE *last;
-}QUEUE;
+	NODE *first;
+	NODE *last;
+}LIST;
 
-//create a queue
-QUEUE *create();
+//create a LIST
+LIST *create();
 
-//delete a PID in the queue
+//delete a PID in the LIST
 void delete();
 
-//Put a PID in the queue
+//Put a PID in the LIST
 //push
-void enqueue(QUEUE *queue, int value);
+void push(LIST *list, int value);
 
-//Take a value out of the queue
-//delete reference in the queue
+//Take a value out of the list
+//delete reference in the list
 //pop
-int dequeue(QUEUE *queue);
+int pop(LIST *list);
 
-//See a value in the queue, at tail
+//See a value in the list, at tail
 void peek();
 
-//Destroy queue
-void destroy(QUEUE *queue);
+//Destroy list
+void destroy(LIST *list);

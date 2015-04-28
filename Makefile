@@ -7,7 +7,7 @@ run:
 clean:
 	rm -f main *.o
 
-test: test_queue.o queue.o
+test: test_queue.o queue.o test_scheduler.o scheduler.o
 	$(CC) -o test test_queue.o queue.o test_scheduler.o scheduler.o
 	./test
 	rm -f test

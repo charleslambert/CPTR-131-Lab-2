@@ -3,84 +3,70 @@
 #include <assert.h>
 #include "queue.h"
 
-void test_enqueue();
-void test_dequeue();
+void test_push();
+void test_pop();
 
 int main() {
-	test_enqueue();
-	test_dequeue();
+	test_push();
+	test_pop();
 
 	return 0;
 }
 
-void test_enqueue() {
+void test_push() {
 	int a = 10;
 	int b = 20;
 	int c = 25;
-	QUEUE *test_q = create();
+	LIST *test_L = create();
 
-	printf("Test enqueue\n\n");
+	printf("Test push\n\n");
 	
 	printf("Test 1\n");
-	enqueue(test_q, a);
-	assert(test_q->first->pid == 10);
-	assert(test_q->last->pid == 10);
-	assert(test_q->count == 1);
+	push(test_L, a);
+	assert(test_L->first->pid == 10);
+	assert(test_L->last->pid == 10);
+	assert(test_L->count == 1);
 
 	printf("Test 2\n");
-	enqueue(test_q, b);
-	assert(test_q->first->pid == 20);
-	assert(test_q->last->pid == 10);
-	assert(test_q->count == 2);
+	push(test_L, b);
+	assert(test_L->first->pid == 20);
+	assert(test_L->last->pid == 10);
+	assert(test_L->count == 2);
 
 	printf("Test 3\n");
-	enqueue(test_q, c);
-	assert(test_q->first->pid == 25);
-	assert(test_q->last->pid == 10);
-	assert(test_q->count == 3);
+	push(test_L, c);
+	assert(test_L->first->pid == 25);
+	assert(test_L->last->pid == 10);
+	assert(test_L->count == 3);
 
 	printf("Tests Passed\n\n");
 }
 
 
-void test_dequeue() {
-	QUEUE *test_q = create();
+void test_pop() {
+	LIST *test_L = create();
 	int a = 10;
 	int b = 20;
 
-	printf("Test dequeue\n\n");
+	printf("Test pop\n\n");
 
 	printf("Test 1\n");
-	assert(dequeue(test_q) == -1);
-	assert(test_q->count == 0);
+	assert(pop(test_L) == -1);
+	assert(test_L->count == 0);
 
 	printf("Test 2\n");
-	enqueue(test_q, a);
-	assert(dequeue(test_q) == 10);
-	assert(test_q->last == EMPTY);
-	assert(test_q->first == EMPTY);
-	assert(test_q->count == 0);
+	push(test_L, a);
+	assert(pop(test_L) == 10);
+	assert(test_L->last == EMPTY);
+	assert(test_L->first == EMPTY);
+	assert(test_L->count == 0);
 
 	printf("Test 3\n");
-	enqueue(test_q, a);
-	enqueue(test_q, b);
-	assert(dequeue(test_q) == 10);
-	assert(test_q->first->pid == 20);
-	assert(test_q->count == 1);
+	push(test_L, a);
+	push(test_L, b);
+	assert(pop(test_L) == 10);
+	assert(test_L->first->pid == 20);
+	assert(test_L->count == 1);
 
 	printf("Test Passed\n\n");
-}
-
-void test_destroy() {
-	QUEUE *test_q = create();
-	enqueue(test_q, 10);
-	enqueue(test_q, 20);
-	enqueue(test_q, 30);
-
-	printf("Test destroy\n\n");
-
-	printf("Test 1\n");
-	destroy(test_q);
-	printf("%d", test_q);
-
 }
