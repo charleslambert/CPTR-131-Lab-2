@@ -1,11 +1,8 @@
-#include <stdio.h>
+#include "double_link_list.h"
 
-typedef struct node {
-	struct node *next;
-	struct node *prev;
-	void *value;
-}NODE;
-
+NODE *make_node() {
+	return calloc(1,sizeof(NODE));
+}
 
 void insert_before(NODE *node, void *value) {
 	NODE *new_node = calloc(1, sizeof(NODE));
