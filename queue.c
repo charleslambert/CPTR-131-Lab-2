@@ -7,18 +7,18 @@ QUEUE *create() {
 //values are pushed into the first of the QUEUE.
 //next is heading toward the first of the QUEUE.
 void push(QUEUE *queue, int pid) {
-	NODE *node = make_node();
-	
-	node->value = pid;
 
 	//adds pid into an empty QUEUE.
 	if(queue->last == EMPTY && queue->first == EMPTY) {
+		NODE *node = make_node();
+		node->value = &pid;
 		queue->first = node;
 		queue->last = node;
 	}
 	//adds pid to a non-empty queue.
 	else {
-		insert_after(node, pid);
+		insert_before(queue->last, &pid);
+		queue->last = queue->last->prev;
 		/*queue->first->next = node;
 		node->prev = queue->first;
 		queue->first = node;*/

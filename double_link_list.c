@@ -5,7 +5,7 @@ NODE *make_node() {
 }
 
 void insert_before(NODE *node, void *value) {
-	NODE *new_node = calloc(1, sizeof(NODE));
+	NODE *new_node = make_node();
 
 	new_node->value = value;
 

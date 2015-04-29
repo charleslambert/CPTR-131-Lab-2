@@ -17,34 +17,36 @@ void test_push() {
 	int a = 10;
 	int b = 20;
 	int c = 25;
-	LIST *test_L = create();
+	QUEUE *test_L = create();
 
 	printf("Test push\n\n");
 	
 	printf("Test 1\n");
 	push(test_L, a);
-	assert(test_L->first->pid == 10);
-	assert(test_L->last->pid == 10);
-	assert(test_L->count == 1);
+	assert((*(int*)test_L->first->value) == 10);
+	assert(*(int*)test_L->last->value == 10);
+	assert((int)test_L->count == 1);
 
 	printf("Test 2\n");
 	push(test_L, b);
-	assert(test_L->first->pid == 20);
-	assert(test_L->last->pid == 10);
-	assert(test_L->count == 2);
+	printf("%d\n", *(int*)test_L->last->value);
+	assert(*(int*)test_L->last->value == 20);
+	printf("%d\n",*(int*)test_L->last->value );
+	assert(*(int*)test_L->first->value == 10);
+	assert(*(int*)test_L->count == 2);
 
 	printf("Test 3\n");
 	push(test_L, c);
-	assert(test_L->first->pid == 25);
-	assert(test_L->last->pid == 10);
-	assert(test_L->count == 3);
+	assert((int)test_L->first->value == 25);
+	assert((int)test_L->last->value == 10);
+	assert((int)test_L->count == 3);
 
 	printf("Tests Passed\n\n");
 }
 
 
 void test_pop() {
-	LIST *test_L = create();
+	QUEUE *test_L = create();
 	int a = 10;
 	int b = 20;
 
@@ -52,7 +54,7 @@ void test_pop() {
 
 	printf("Test 1\n");
 	assert(pop(test_L) == -1);
-	assert(test_L->count == 0);
+	assert((int)test_L->count == 0);
 
 	printf("Test 2\n");
 	push(test_L, a);
@@ -65,7 +67,7 @@ void test_pop() {
 	push(test_L, a);
 	push(test_L, b);
 	assert(pop(test_L) == 10);
-	assert(test_L->first->pid == 20);
+	assert((int)test_L->first->value == 20);
 	assert(test_L->count == 1);
 
 	printf("Test Passed\n\n");

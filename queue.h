@@ -7,7 +7,7 @@
 
 #define EMPTY NULL
 
-typedef struct double_l_list {
+typedef struct queue {
 	int count;
 	NODE *first;
 	NODE *last;
