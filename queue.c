@@ -1,78 +1,79 @@
 #include "queue.h"
 
-LIST *create() {
-	return calloc(1,sizeof(LIST));
+QUEUE *create() {
+	return calloc(1,sizeof(QUEUE));
 }
 
-//values are pushed into the first of the List.
-//next is heading toward the first of the List.
-void push(LIST *list, int value) {
-	NODE *node = calloc(1, sizeof(NODE));
+//values are pushed into the first of the QUEUE.
+//next is heading toward the first of the QUEUE.
+void push(QUEUE *queue, int pid) {
+	NODE *node = make_node();
 	
-	node->pid = value;
+	node->value = pid;
 
-	//adds pid into an empty list.
-	if(list->last == EMPTY && list->first == EMPTY) {
-		list->first = node;
-		list->last = node;
+	//adds pid into an empty QUEUE.
+	if(queue->last == EMPTY && queue->first == EMPTY) {
+		queue->first = node;
+		queue->last = node;
 	}
-	//adds pid to a non-empty list.
+	//adds pid to a non-empty queue.
 	else {
-		list->first->next = node;
-		node->prev = list->first;
-		list->first = node;
+		insert_after(node, pid);
+		/*queue->first->next = node;
+		node->prev = queue->first;
+		queue->first = node;*/
 	}
 
-	list->count++;
+	queue->count++;
 }
 
-//values are poped off the tail of the list.
-//prev is heading toward the last of the list.
-int pop(LIST *list) {
+//values are poped off the tail of the QUEUE.
+//prev is heading toward the last of the QUEUE.
+int pop(QUEUE *queue) {
 	int pid;
 
-	//returns an error if the list is empty and you try to pop off of it.
-	if(list->last == EMPTY && list->first == EMPTY) {
-		printf("ERROR: The list is empty\n");
+	//returns an error if the QUEUE is empty and you try to pop off of it.
+	if(queue->last == EMPTY && queue->first == EMPTY) {
+		printf("ERROR: The queue is empty\n");
 		return -1;
 	}
-	//if the list only has one entry pops it then sets the list to be empty.
-	else if(list->last == list->first)
+	//if the QUEUE only has one entry pops it then sets the QUEUE to be empty.
+	else if(queue->last == queue->first)
 	{
-		pid = list->last->pid;
-		free(list->last);
-		list->first = EMPTY;
-		list->last = EMPTY;
+		pid = (int) queue->last->value;
+		free(queue->last);
+		queue->first = EMPTY;
+		queue->last = EMPTY;
 	}
-	//pops off the last thing in a list that is longer than 1.
+	//pops off the last thing in a QUEUE that is longer than 1.
 	else {
-		pid = list->last->pid;
-		list->last = list->last->next;
-		free(list->last->prev);
-		list->last->prev = EMPTY;
+		pid = (int) queue->last->value;
+		queue->last = queue->last->next;
+		free(queue->last->prev);
+		queue->last->prev = EMPTY;
 	}
 
-	list->count--;
+	queue->count--;
 	return pid;
 }
 
-void destroy(LIST *list) {
-	if (list->first == EMPTY && list->last == EMPTY) {
-		free(list);
+void destroy(QUEUE *queue) {
+	if (queue->first == EMPTY && queue->last == EMPTY) {
+		free(queue);
 	}
 	else {
-		while (list->count >= 0) {
-			pop(list);
+		while (queue->count >= 0) {
+			pop(queue);
 
-			list->count--;
+			queue->count--;
 		}
 	}
 }
 
-void retrieve(int pid, LIST *list) {
-	NODE *node= list->first;
+void retrieve(int pid, QUEUE *queue) {
+	NODE *node= queue->first;
 
-	while(pid != node->pid) {
+	while(pid != (int) node->value) {
 		node = node->prev;	
 	}
 }

@@ -1,5 +1,5 @@
-all: main.o scheduler.o queue.o
-	$(CC) -o main main.o scheduler.o queue.o
+all: main.o scheduler.o queue.o double_link_list.o
+	$(CC) -o main main.o scheduler.o queue.o double_link_list.o
 
 run:
 	./main

@@ -3,39 +3,33 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "double_link_list.h"
 
 #define EMPTY NULL
-
-
-typedef struct node {
-	struct node *next;
-	struct node *prev;
-	int pid;
-}NODE;
 
 typedef struct double_l_list {
 	int count;
 	NODE *first;
 	NODE *last;
-}LIST;
+}QUEUE;
 
-//create a LIST
-LIST *create();
+//create a QUEUE
+QUEUE *create();
 
-//delete a PID in the LIST
+//delete a PID in the QUEUE
 void delete();
 
-//Put a PID in the LIST
+//Put a PID in the QUEUE
 //push
-void push(LIST *list, int value);
+void push(QUEUE *queue, int value);
 
-//Take a value out of the list
-//delete reference in the list
+//Take a value out of the QUEUE
+//delete reference in the QUEUE
 //pop
-int pop(LIST *list);
+int pop(QUEUE *queue);
 
-//See a value in the list, at tail
+//See a value in the QUEUE, at tail
 void peek();
 
-//Destroy list
-void destroy(LIST *list);
+//Destroy QUEUE
+void destroy(QUEUE *queue);
