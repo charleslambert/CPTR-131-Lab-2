@@ -36,18 +36,22 @@ void insert_after(NODE *node, void *value) {
 
 void delete_node(NODE *node) {
 
-	if(node->prev == NULL && node->next == NULL){
-	}
-	if (node->prev == NULL && node->next != NULL){
-		node->next->prev = NULL;
-	}
-	else if (node->prev == NULL && node->next != NULL) {
-		node->prev->next = NULL;
-	}
-	else {
+	if (node->next != NULL){
 		node->next->prev = node->prev;
+	}
+	if (node->prev != NULL) {
 		node->prev->next = node->next;
 	}
 		
 	free(node);
 }
+
+
+//This function may not be used but is for future use.
+/*void *retrieve(void *value, NODE *first_node) {
+
+	while(first_node != node->value) {
+		first_node = first_node->next;	
+	}
+
+}*/

@@ -9,8 +9,8 @@ clean:
 
 test: test_queue.o queue.o test_scheduler.o scheduler.o test_double_link_list.o double_link_list.o
 	$(CC) -o test test_queue.o queue.o test_scheduler.o scheduler.o double_link_list.o
-	./test
 	$(CC) -o test2 test_double_link_list.o double_link_list.o
+	./test
 	./test2
 	rm -f test
 	rm -f test2

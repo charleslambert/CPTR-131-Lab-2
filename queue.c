@@ -47,9 +47,7 @@ int dequeue(QUEUE *queue) {
 	//dequeues off the last thing in a QUEUE that is longer than 1.
 	else {
 		pid = (int) queue->first->value;
-		printf("herp");
 		queue->first = queue->first->prev;
-		printf("derp");
 		delete_node(queue->first->next);
 	}
 
@@ -70,10 +68,3 @@ void destroy(QUEUE *queue) {
 	}
 }
 
-void retrieve(int pid, QUEUE *queue) {
-	NODE *node= queue->first;
-
-	while(pid != (int) node->value) {
-		node = node->prev;	
-	}
-}
