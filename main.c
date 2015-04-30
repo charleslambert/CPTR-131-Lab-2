@@ -8,6 +8,7 @@ int main() {
 	printf("input?: ");
 	scanf("%c", &mode);
 
+	//Checks for mode desired by user
 	if (mode == 'I') { 
 		i_mode();
 		return 0;
@@ -20,5 +21,6 @@ int main() {
 		printf("\nInvalid Command");
 		return 1;
 	}
+
 	return 0;
 }

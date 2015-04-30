@@ -32,10 +32,13 @@ void i_mode() {
 	int input_arg;
 	char input[64];
 
+	//Continually checks for user input
 	while(input_op != 'E') {
 		
 		scanf("%s", input);
 
+		//Differentiates between operations that have arguements
+		//and those that do not
 		if(input[0] == 'A' || input[0] == 'I' || input[0] == 'W' || input[0] == 'K') {
 			sscanf(input,"%c %d", &input_op, &input_arg); 
 		}
@@ -54,10 +57,10 @@ void f_mode() {
 	FILE *file;
 	char file_name[64];
 
-
 	printf("\nFile to be used?: ");
 	scanf("%s", file_name);
 
+	//Checks for files existence
 	if(access(file_name,F_OK) == -1) {
 		printf("File does not exit\n");
 		exit(1);
@@ -65,8 +68,11 @@ void f_mode() {
 
 	file = fopen(file_name, "r");
 
+	//read each line in file
 	while(fgets(input, 64,file) != NULL) {
 
+		//Differentiates between operations that have arguements
+		//and those that do not
 		if(input[0] == 'A' || input[0] == 'I' || input[0] == 'W' || input[0] == 'K') {
 			sscanf(input,"%c %d", &input_op, &input_arg); 
 		}
