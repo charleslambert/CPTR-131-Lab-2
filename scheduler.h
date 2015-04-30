@@ -20,3 +20,5 @@ int run_next();
 void i_mode();
 
 void f_mode();
+
+void schedule_switch(char input_op, int input_arg);

@@ -31,11 +31,6 @@ void i_mode() {
 	char input_op;
 	int input_arg;
 	char input[64];
-	QUEUE *ready_queue = create();
-	QUEUE *wait_queue = create();
-	NODE *i_o_waitlist = make_node();
-	int clock_count = 0;
-	int running_process;
 
 	while(input_op != 'E') {
 		
@@ -48,29 +43,7 @@ void i_mode() {
 			sscanf(input, "%c", &input_op);
 		}
 
-		switch(input_op) {
-
-			case 'A':
-				enqueue(ready_queue, input_arg);
-				break;
-			case 'T':
-				enqueue(ready_queue, running_process);
-				clock_count += 1;
-				//check timed wait queue for process, if process ready put in ready queue
-				running_process = dequeue(ready_queue);
-				break;
-			case 'S':
-				break;
-			case 'I':
-				break;
-			case 'W':
-				break;
-			case 'K':
-				retrieve(input_arg, ready_queue->first);
-				retrieve(input_arg, wait_queue->first);
-				retrieve(input_arg, i_o_waitlist);
-				break;
-		}
+		schedule_switch(input_op, input_arg);
 	}
 }
 
@@ -78,11 +51,6 @@ void f_mode() {
 	char input_op;
 	int input_arg;
 	char input[64];
-	QUEUE *ready_queue = create();
-	QUEUE *wait_queue = create();
-	NODE *i_o_waitlist = make_node();
-	int clock_count = 0;
-	int running_process;
 	FILE *file;
 	char file_name[64];
 
@@ -106,28 +74,38 @@ void f_mode() {
 			sscanf(input, "%c", &input_op);
 		}
 
-		switch(input_op) {
+		schedule_switch(input_op,input_arg);
+	}
+}
 
-			case 'A':
-				enqueue(ready_queue, input_arg);
-				break;
-			case 'T':
-				enqueue(ready_queue, running_process);
-				clock_count += 1;
-				//check timed wait queue for process, if process ready put in ready queue
-				running_process = dequeue(ready_queue);
-				break;
-			case 'S':
-				break;
-			case 'I':
-				break;
-			case 'W':
-				break;
-			case 'K':
-				retrieve(input_arg, ready_queue->first);
-				retrieve(input_arg, wait_queue->first);
-				retrieve(input_arg, i_o_waitlist);
-				break;
-		}
+void schedule_switch(char input_op, int input_arg) {
+	QUEUE *ready_queue = create();
+	QUEUE *wait_queue = create();
+	NODE *i_o_waitlist = make_node();
+	int clock_count = 0;
+	int running_process;
+
+	switch(input_op) {
+
+		case 'A':
+			enqueue(ready_queue, input_arg);
+			break;
+		case 'T':
+			enqueue(ready_queue, running_process);
+			clock_count += 1;
+			//check timed wait queue for process, if process ready put in ready queue
+			running_process = dequeue(ready_queue);
+			break;
+		case 'S':
+			break;
+		case 'I':
+			break;
+		case 'W':
+			break;
+		case 'K':
+			retrieve(input_arg, ready_queue->first);
+			retrieve(input_arg, wait_queue->first);
+			retrieve(input_arg, i_o_waitlist);
+			break;
 	}
 }
