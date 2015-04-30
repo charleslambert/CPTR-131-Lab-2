@@ -33,3 +33,21 @@ void insert_after(NODE *node, void *value) {
 		new_node->next->prev = new_node;
 	}
 }
+
+void delete_node(NODE *node) {
+
+	if(node->prev == NULL && node->next == NULL){
+	}
+	if (node->prev == NULL && node->next != NULL){
+		node->next->prev = NULL;
+	}
+	else if (node->prev == NULL && node->next != NULL) {
+		node->prev->next = NULL;
+	}
+	else {
+		node->next->prev = node->prev;
+		node->prev->next = node->next;
+	}
+		
+	free(node);
+}

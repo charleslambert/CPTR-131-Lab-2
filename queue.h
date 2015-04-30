@@ -20,13 +20,13 @@ QUEUE *create();
 void delete();
 
 //Put a PID in the QUEUE
-//push
-void push(QUEUE *queue, int value);
+//enqueue
+void enqueue(QUEUE *queue, int value);
 
 //Take a value out of the QUEUE
 //delete reference in the QUEUE
-//pop
-int pop(QUEUE *queue);
+//dequeue
+int dequeue(QUEUE *queue);
 
 //See a value in the QUEUE, at tail
 void peek();

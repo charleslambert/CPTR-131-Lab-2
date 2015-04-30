@@ -4,53 +4,53 @@ QUEUE *create() {
 	return calloc(1,sizeof(QUEUE));
 }
 
-//values are pushed into the first of the QUEUE.
+//values are enqueueed into the last of the QUEUE.
 //next is heading toward the first of the QUEUE.
-void push(QUEUE *queue, int pid) {
+void enqueue(QUEUE *queue, int pid) {
 
 	//adds pid into an empty QUEUE.
 	if(queue->last == EMPTY && queue->first == EMPTY) {
 		NODE *node = make_node();
-		node->value = &pid;
+		node->value = pid;
 		queue->first = node;
 		queue->last = node;
 	}
 	//adds pid to a non-empty queue.
 	else {
-		insert_before(queue->last, &pid);
+		NODE *node;
+
+		insert_before(queue->last, pid);
 		queue->last = queue->last->prev;
-		/*queue->first->next = node;
-		node->prev = queue->first;
-		queue->first = node;*/
 	}
 
 	queue->count++;
 }
 
-//values are poped off the tail of the QUEUE.
+//values are dequeueed off the first of the QUEUE.
 //prev is heading toward the last of the QUEUE.
-int pop(QUEUE *queue) {
+int dequeue(QUEUE *queue) {
 	int pid;
 
-	//returns an error if the QUEUE is empty and you try to pop off of it.
+	//returns an error if the QUEUE is empty and you try to dequeue off of it.
 	if(queue->last == EMPTY && queue->first == EMPTY) {
 		printf("ERROR: The queue is empty\n");
 		return -1;
 	}
-	//if the QUEUE only has one entry pops it then sets the QUEUE to be empty.
+	//if the QUEUE only has one entry dequeues it then sets the QUEUE to be empty.
 	else if(queue->last == queue->first)
 	{
-		pid = (int) queue->last->value;
-		free(queue->last);
+		pid = (int) queue->first->value;
+		free(queue->first);
 		queue->first = EMPTY;
 		queue->last = EMPTY;
 	}
-	//pops off the last thing in a QUEUE that is longer than 1.
+	//dequeues off the last thing in a QUEUE that is longer than 1.
 	else {
-		pid = (int) queue->last->value;
-		queue->last = queue->last->next;
-		free(queue->last->prev);
-		queue->last->prev = EMPTY;
+		pid = (int) queue->first->value;
+		printf("herp");
+		queue->first = queue->first->prev;
+		printf("derp");
+		delete_node(queue->first->next);
 	}
 
 	queue->count--;
@@ -63,7 +63,7 @@ void destroy(QUEUE *queue) {
 	}
 	else {
 		while (queue->count >= 0) {
-			pop(queue);
+			dequeue(queue);
 
 			queue->count--;
 		}
