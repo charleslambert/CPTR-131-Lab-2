@@ -1,37 +1,24 @@
 #include "scheduler.h"
 
 int main() {
+	char mode;
 
-	char input_op;
-	int input_arg;
-	QUEUE *ready_queue = create();
-	QUEUE *wait_queue = create();
-	NODE *i_o_waitlist;
+	printf("If you would like interactive mode type I\n");
+	printf("If you would like file mode type F\n");
+	printf("input?: ");
+	scanf("%c", &mode);
 
-	while(input_op != 'E') {
-		
-		scanf("%c %d", &input_op, &input_arg||NULL); 
-
-		switch(input_op) {
-
-			case 'A':
-				enqueue(ready_queue, input_arg);
-				break;
-			case 'T':
-				break;
-			case 'S':
-				break;
-			case 'I':
-				break;
-			case 'W':
-				break;
-			case 'K':
-				break;
-		}
-
+	if (mode == 'I') { 
+		i_mode();
+		return 0;
 	}
-
-	printf("%d", (int)ready_queue->first->value);
-
+	else if (mode == 'F') {
+		f_mode();
+		return 0;
+	}
+	else {
+		printf("\nInvalid Command");
+		return 1;
+	}
 	return 0;
 }

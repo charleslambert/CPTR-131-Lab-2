@@ -11,6 +11,7 @@ int main() {
 	test_insert_before();
 	test_insert_after();
 	test_delete_node();
+	test_retrieve();
 
 	return 0;
 }
@@ -43,6 +44,8 @@ void test_insert_after() {
 	printf("Test 1\n");
 	insert_before(t_list, b);
 	assert((int) t_list->prev->value == 10);
+
+	printf("Tests Passed\n\n");
 }
 
 void test_delete_node() {
@@ -64,4 +67,33 @@ void test_delete_node() {
 	delete_node(node_a);
 	assert((int)node_b->next->value == 15);
 	assert((int)node_c->prev->value == 10);
+
+	printf("Tests Passed\n\n");
+}
+
+void test_retrieve() {
+	int a = 5;
+	int b = 10;
+	int c = 15;
+	int d = 20;
+	NODE *node = make_node();
+	node->value = a;
+	insert_after(node, b);
+	insert_after(node->next, c);
+
+	printf("Test retrieve\n\n");
+
+	printf("Test 1\n");
+	assert((int)retrieve(d, node) == 0);
+
+	printf("Test 2\n");
+	assert((int)retrieve(b, node) == 10);
+
+	printf("Test 3\n");
+	assert((int)retrieve(c, node) == 15);
+
+	printf("Test 4\n");
+	assert((int)retrieve(a, node) == 5);	
+
+	printf("Tests Passed\n\n");
 }

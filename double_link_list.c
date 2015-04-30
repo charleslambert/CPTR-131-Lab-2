@@ -48,10 +48,19 @@ void delete_node(NODE *node) {
 
 
 //This function may not be used but is for future use.
-/*void *retrieve(void *value, NODE *first_node) {
+void *retrieve(void *value, NODE *first_node) {
+	void *return_value;
 
-	while(first_node != node->value) {
-		first_node = first_node->next;	
+	while(first_node != NULL) {
+		if(first_node->value == value) {
+			return_value = first_node->value;
+			delete_node(first_node);
+			return return_value;
+		}
+		else {
+			first_node = first_node->next;
+		}
 	}
 
-}*/
+	return NULL;
+}
